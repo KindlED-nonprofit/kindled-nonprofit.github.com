@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import {
   User,
@@ -39,7 +38,6 @@ type FormData = {
 };
 
 export default function RegisterPage() {
-  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<"mentor" | "mentee">("mentee");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -50,13 +48,6 @@ export default function RegisterPage() {
     formState: { errors },
     reset,
   } = useForm<FormData>();
-
-  useEffect(() => {
-    const type = searchParams.get("type");
-    if (type === "mentor" || type === "mentee") {
-      setActiveTab(type);
-    }
-  }, [searchParams]);
 
   const academicFields = [
     "Medicine & Healthcare",
@@ -524,3 +515,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+export const dynamic = "force-dynamic";
