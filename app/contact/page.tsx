@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, User } from "lucide-react"
+import { Mail, Clock, Send, CheckCircle, User } from "lucide-react"
 import { FloatingLabelInput } from "@/components/enhanced-form"
 
 type ContactFormData = {

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown, Search, HelpCircle } from "lucide-react"
+import { ChevronDown, HelpCircle } from "lucide-react"
 
 interface FAQItem {
   id: string
@@ -22,7 +22,7 @@ export default function InteractiveFAQ({
   description = "Find answers to common questions",
 }: InteractiveFAQProps) {
   const [openItems, setOpenItems] = useState<Set<string>>(new Set())
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("all")
 
   const categories = ["all", ...Array.from(new Set(faqs.map((faq) => faq.category)))]

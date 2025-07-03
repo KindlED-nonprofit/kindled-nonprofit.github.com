@@ -2,19 +2,19 @@
 
 import type React from "react"
 import { useState } from "react"
-import { CheckCircle, Eye, EyeOff } from "lucide-react"
+import { Eye, EyeOff } from "lucide-react"
 
 interface FloatingLabelInputProps {
-  label: string
-  type?: string
-  icon?: React.ComponentType<any>
-  required?: boolean
-  error?: string
-  register: any
-  name: string
-  placeholder?: string
-  rows?: number
-  options?: string[]
+  label: string;
+  type?: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  required?: boolean;
+  error?: string;
+  register: any;
+  name: string;
+  placeholder?: string;
+  rows?: number;
+  options?: string[];
 }
 
 function FloatingLabelInput({
@@ -29,11 +29,7 @@ function FloatingLabelInput({
   rows,
   options,
 }: FloatingLabelInputProps) {
-  const [isFocused, setIsFocused] = useState(false)
-  const [hasValue, setHasValue] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-
-  const isActive = isFocused || hasValue
 
   if (type === "select" && options) {
     return (
