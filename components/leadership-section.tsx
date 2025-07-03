@@ -1,4 +1,5 @@
 import { Linkedin, Mail, GraduationCap } from "lucide-react"
+import Image from "next/image"
 
 interface Leader {
   name: string
@@ -91,9 +92,11 @@ export default function LeadershipSection() {
               {/* Profile Image */}
               <div className="relative mb-6">
                 <div className="w-32 h-32 mx-auto rounded-full overflow-hidden ring-4 ring-orange-100 group-hover:ring-orange-200 transition-all duration-300">
-                  <img
+                  <Image
                     src={leader.image || "/placeholder.svg"}
                     alt={leader.name}
+                    width={128}
+                    height={128}
                     className="w-full h-full object-cover"
                   />
                 </div>
