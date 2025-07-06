@@ -100,7 +100,7 @@ export default function AboutPage() {
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-800 mb-6 leading-tight">
                 About{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+                <span className="bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
                   KindlED
                 </span>
               </h1>

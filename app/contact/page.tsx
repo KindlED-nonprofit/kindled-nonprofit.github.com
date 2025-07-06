@@ -114,7 +114,7 @@ export default function ContactPage() {
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-800 mb-6 leading-tight">
                 Get in{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600">
+                <span className="bg-clip-text bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600">
                   Touch
                 </span>
               </h1>

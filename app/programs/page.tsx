@@ -104,7 +104,7 @@ export default function ProgramsPage() {
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-800 mb-6 leading-tight">
                 Our{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">
+                <span className="bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600">
                   Programs
                 </span>
               </h1>

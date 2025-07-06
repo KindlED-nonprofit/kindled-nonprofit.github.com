@@ -149,7 +149,7 @@ export default function RegisterPage() {
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-800 mb-6 leading-tight">
                 Join{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 via-pink-600 to-orange-600">
+                <span className="bg-clip-text bg-gradient-to-r from-rose-600 via-pink-600 to-orange-600">
                   KindlED
                 </span>
               </h1>
