@@ -101,7 +101,7 @@ export default function HomePage() {
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-800 mb-6 leading-tight">
                 Kindle Your{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500">
+                <span className="bg-clip-text bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500">
                   Potential
                 </span>
               </h1>
@@ -157,7 +157,7 @@ export default function HomePage() {
                   <div className="bg-gradient-to-br from-orange-100 to-amber-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
                     <IconComponent className="h-10 w-10 text-orange-500" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent mb-2">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text mb-2">
                     {stat.number}
                   </div>
                   <div className="text-sm md:text-base text-gray-600 font-medium">
@@ -185,7 +185,7 @@ export default function HomePage() {
             {academicFields.map((field, index) => {
               const IconComponent = field.icon;
               return (
-                <Link href={field.link}>
+                <Link key={index} href={field.link}>
                   <div
                     key={index}
                     className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
