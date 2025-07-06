@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import {
+  LucideIcon,
   Users,
   BookOpen,
   Award,
@@ -11,14 +13,26 @@ import {
   Scale,
   Cog,
 } from "lucide-react";
-import { link } from "fs";
+import { useState } from "react";
 
 export default function HomePage() {
-  const stats = [
-    { number: "N/A", label: "Students Mentored", icon: Users },
-    { number: "N/A", label: "Active Mentors", icon: BookOpen },
-    { number: "N/A", label: "Success Rate", icon: Award },
-    { number: "N/A", label: "Universities Represented", icon: TrendingUp },
+  type ModalType = "students" | "mentors" | "success" | "universities";
+
+  const stats: {
+    id: ModalType;
+    number: string;
+    label: string;
+    icon: LucideIcon;
+  }[] = [
+    { id: "students", number: "N/A", label: "Students Mentored", icon: Users },
+    { id: "mentors", number: "N/A", label: "Active Mentors", icon: BookOpen },
+    { id: "success", number: "N/A", label: "Success Rate", icon: Award },
+    {
+      id: "universities",
+      number: "N/A",
+      label: "Universities Represented",
+      icon: TrendingUp,
+    },
   ];
 
   const academicFields = [
@@ -68,6 +82,10 @@ export default function HomePage() {
       rating: 5,
     },
   ];
+
+  const [activeModal, setActiveModal] = useState<ModalType | null>(null);
+  const openModal = (id: ModalType) => setActiveModal(id);
+  const closeModal = () => setActiveModal(null);
 
   return (
     <div className="min-h-screen">
@@ -147,17 +165,23 @@ export default function HomePage() {
             <p className="text-base md:text-lg text-gray-600">
               Making a difference, one mentorship at a time
             </p>
-            <p className=" text-base md=text-sm">For more detail hover</p>
+            <p className="text-base md:text-sm">
+              For more detail hover or click
+            </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
-                <div key={index} className="text-center group">
+                <div
+                  key={index}
+                  className="text-center group cursor-pointer"
+                  onClick={() => openModal(stat.id)}
+                >
                   <div className="bg-gradient-to-br from-orange-100 to-amber-100 w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
                     <IconComponent className="h-10 w-10 text-orange-500" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text mb-2">
+                  <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent mb-2">
                     {stat.number}
                   </div>
                   <div className="text-sm md:text-base text-gray-600 font-medium">
@@ -169,6 +193,102 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      {activeModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          onClick={closeModal} // click on overlay closes modal
+        >
+          <div
+            className="bg-white max-w-2xl w-full p-6 rounded-xl relative"
+            onClick={(e) => e.stopPropagation()} // prevent modal click from closing
+          >
+            <button
+              className="absolute top-3 right-4 text-gray-500 hover:text-black text-xl"
+              onClick={closeModal}
+            >
+              ✕
+            </button>
+
+            {/* Modal Content */}
+            {activeModal === "students" && (
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Students Mentored</h3>
+                <p>We've mentored students from schools across the country:</p>
+                {/* You can show school logos, names, or a map here */}
+              </div>
+            )}
+
+            {activeModal === "mentors" && (
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Active Mentors</h3>
+                <p>
+                  We currently have <strong>[Actual Number]</strong> active and
+                  highly qualified mentors ready to help mentees from all
+                  backgrounds.
+                </p>
+              </div>
+            )}
+
+            {activeModal === "success" && (
+              <div>
+                <h3 className="text-2xl font-bold mb-4">Success Rate</h3>
+                <p className="mb-4">Based on mentor and mentee feedback:</p>
+                <div className="space-y-2">
+                  {[5, 4, 3, 2, 1].map((star) => (
+                    <div key={star} className="flex items-center space-x-2">
+                      <span>{star}★</span>
+                      <div className="bg-gray-200 w-full h-3 rounded">
+                        <div
+                          className="bg-yellow-400 h-3 rounded"
+                          style={{ width: `${Math.random() * 100}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 mt-4 italic">
+                  * Every review with 3+ stars is counted as successful.
+                </p>
+              </div>
+            )}
+
+            {activeModal === "universities" && (
+              <div>
+                <h3 className="text-2xl font-bold mb-4">
+                  Universities Represented
+                </h3>
+                <ul className="space-y-3">
+                  {/* Replace with your actual university data */}
+                  <li className="flex items-center space-x-4">
+                    <img
+                      src="/logos/harvard.png"
+                      alt="Harvard"
+                      className="w-10 h-10"
+                    />
+                    <div>
+                      <p className="font-medium">Harvard University</p>
+                      <p className="text-sm text-gray-600">
+                        Cambridge, MA – 4 mentors
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-center space-x-4">
+                    <img src="/logos/mit.png" alt="MIT" className="w-10 h-10" />
+                    <div>
+                      <p className="font-medium">MIT</p>
+                      <p className="text-sm text-gray-600">
+                        Cambridge, MA – 3 mentors
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Academic Fields */}
       <section className="py-16 bg-gradient-to-br from-gray-50 to-orange-50">
@@ -212,11 +332,11 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Success Stories
+              Why We Started
             </h2>
-            <p className="text-base md:text-lg text-gray-600">
+            {/* <p className="text-base md:text-lg text-gray-600">
               Hear from our amazing community
-            </p>
+            </p> */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -224,14 +344,14 @@ export default function HomePage() {
                 key={index}
                 className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
               >
-                <div className="flex items-center mb-4">
+                {/* <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
                       key={i}
                       className="h-5 w-5 text-yellow-400 fill-current"
                     />
                   ))}
-                </div>
+                </div> */}
                 <p className="text-gray-600 mb-4 leading-relaxed">
                   "{testimonial.content}"
                 </p>
