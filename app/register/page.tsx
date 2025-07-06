@@ -504,12 +504,22 @@ export default function RegisterPage() {
         </div>
 
         <div className="center my-10">
-          <iframe
-            className="center w-full h-500"
-            src="https://docs.google.com/forms/d/e/1FAIpQLSftsjor8llJj8cPURwq3losYjNxb97pzVW6BCwYzf-tnTOaWg/viewform?embedded=true"
-          >
-            Loading…
-          </iframe>
+          <section className="bg-white p-8 rounded-2xl max-w-4xl mx-auto my-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+              <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
+                <User className="h-5 w-5 text-white" />
+              </div>
+              Application Form
+            </h2>
+            <div className="rounded-xl overflow-hidden">
+              <iframe
+                className="w-full h-[1000px]"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSftsjor8llJj8cPURwq3losYjNxb97pzVW6BCwYzf-tnTOaWg/viewform?embedded=true"
+              >
+                Loading…
+              </iframe>
+            </div>
+          </section>
         </div>
       </div>
     </div>

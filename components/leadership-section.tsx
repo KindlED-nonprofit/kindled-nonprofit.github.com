@@ -14,60 +14,37 @@ interface Leader {
 export default function LeadershipSection() {
   const leaders: Leader[] = [
     {
-      name: "Sarah Chen",
+      name: "Ibraim Kanza",
       title: "Co-President & Founder",
-      bio: "Sarah is a pre-med student at Harvard University with a passion for mentorship and educational equity. She founded KindlED after experiencing firsthand the transformative power of mentorship.",
-      education: "Harvard University - Biology & Pre-Med",
+      bio: "Ibraim leads our mission and heads the organization with his 2 co-founders. A passionate High school senior who's always wanted to see his peers succeed in life. He devotes his time to KindlED to maximize the success of it, its mentors, and its mentees as one whole family.",
+      education:
+        "Senior @ Schaumburg High School - Aspiring Pharmaceutical Scientist",
       image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/sarahchen",
-      email: "sarah@kindled.org",
+      linkedin: "https://www.linkedin.com/in/ibraim-kanza-684348305/",
+      email: "ibraimkanza@gmail.com",
     },
     {
-      name: "Marcus Johnson",
-      title: "Co-President & Technology Lead",
-      bio: "Marcus leads our technology initiatives and mentor matching algorithms. As a Computer Science major at MIT, he brings technical expertise and a deep understanding of student needs.",
-      education: "MIT - Computer Science & AI",
+      name: "Ayush Patel",
+      title: "Co-President & Founder",
+      bio: "Ayush leads besides Ibraim as Co-President. He is a passionate and driven scholar that has made great strides in pursuing his cultural heritage and fostering others’ cultural connection. Ayush is constantly trying to find a new project that inspires him and others as KindlED does.",
+      education:
+        "Senior @ Schaumburg High School - Aspiring Aerospace Engineer and Business Administrator",
       image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/marcusjohnson",
-      email: "marcus@kindled.org",
+      linkedin: "https://www.linkedin.com/in/ayush-patel-77721335a/",
+      email: "Ayush08132008@gmail.com",
     },
     {
-      name: "Dr. Emily Rodriguez",
-      title: "Faculty Advisor",
-      bio: "Dr. Rodriguez brings over 15 years of experience in educational psychology and student development. She guides our mentorship methodology and ensures program effectiveness.",
-      education: "PhD Educational Psychology - Stanford",
+      name: "Vishwak Medempudi",
+      title: "Operations Director & Founder",
+      bio: "Vishwak is a co-founder of KindlED. He is driven by a passion for educational equity and service. As a student interested in finance, Vishwak brings both insight and energy to the mission. He believes that the right guidance can change lives, and is committed to making it accessible to all.",
+      education:
+        "Senior @ Schaumburg High School - Aspiring Risk Management Professional and Wealth Advisor",
       image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/emilyrodriguez",
-      email: "emily@kindled.org",
+      //TODO: Add Linkedin
+      linkedin: "",
+      email: "vishwak.medempudi@gmail.com",
     },
-    {
-      name: "James Park",
-      title: "Director of Partnerships",
-      bio: "James manages our university partnerships and corporate relationships. His background in business development helps expand KindlED's reach and impact.",
-      education: "Wharton School - Business Administration",
-      image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/jamespark",
-      email: "james@kindled.org",
-    },
-    {
-      name: "Aisha Patel",
-      title: "Director of Student Success",
-      bio: "Aisha oversees our mentorship programs and tracks student outcomes. Her experience in student affairs ensures every participant receives exceptional support.",
-      education: "Columbia University - Education Policy",
-      image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/aishapatel",
-      email: "aisha@kindled.org",
-    },
-    {
-      name: "David Kim",
-      title: "Director of Communications",
-      bio: "David leads our outreach and communications efforts, helping spread awareness about KindlED's mission and connecting with students who need mentorship.",
-      education: "Northwestern University - Communications",
-      image: "/placeholder.svg?height=128&width=128",
-      linkedin: "https://linkedin.com/in/davidkim",
-      email: "david@kindled.org",
-    },
-  ]
+  ];
 
   return (
     <section className="py-16 bg-gradient-to-br from-slate-50 to-gray-100">

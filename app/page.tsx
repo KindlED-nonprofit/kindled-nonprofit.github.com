@@ -1,46 +1,73 @@
-import Link from "next/link"
-import { Users, BookOpen, Award, ArrowRight, Star, TrendingUp, Heart, Monitor, Scale, Cog } from "lucide-react"
+import Link from "next/link";
+import {
+  Users,
+  BookOpen,
+  Award,
+  ArrowRight,
+  Star,
+  TrendingUp,
+  Heart,
+  Monitor,
+  Scale,
+  Cog,
+} from "lucide-react";
+import { link } from "fs";
 
 export default function HomePage() {
   const stats = [
-    { number: "500+", label: "Students Mentored", icon: Users },
-    { number: "200+", label: "Active Mentors", icon: BookOpen },
-    { number: "95%", label: "Success Rate", icon: Award },
-    { number: "50+", label: "Universities Represented", icon: TrendingUp },
-  ]
+    { number: "N/A", label: "Students Mentored", icon: Users },
+    { number: "N/A", label: "Active Mentors", icon: BookOpen },
+    { number: "N/A", label: "Success Rate", icon: Award },
+    { number: "N/A", label: "Universities Represented", icon: TrendingUp },
+  ];
 
   const academicFields = [
-    { name: "Medicine & Healthcare", icon: Heart },
-    { name: "Computer Science/AI/Data Science", icon: Monitor },
-    { name: "Business & Entrepreneurship", icon: TrendingUp },
-    { name: "Humanities & Liberal Arts", icon: BookOpen },
-    { name: "Law & Policy", icon: Scale },
-    { name: "Engineering & STEM", icon: Cog },
-  ]
+    {
+      name: "Medicine & Healthcare",
+      icon: Heart,
+      link: "/about#medicine-healthcare",
+    },
+    {
+      name: "Computer Science/AI/Data Science",
+      icon: Monitor,
+      link: "/about#computer-science-ai-data-science",
+    },
+    {
+      name: "Business & Entrepreneurship",
+      icon: TrendingUp,
+      link: "/about#business-entrepreneurship",
+    },
+    {
+      name: "Humanities & Liberal Arts",
+      icon: BookOpen,
+      link: "/about#humanities-liberal-arts",
+    },
+    { name: "Law & Policy", icon: Scale, link: "/about#law-policy" },
+    { name: "Engineering & STEM", icon: Cog, link: "/about#engineering-stem" },
+  ];
 
   const testimonials = [
     {
-      name: "Sarah Chen",
-      role: "Pre-Med Student",
+      name: "Ibraim Kanza",
+      role: "Co-President",
       content:
-        "My mentor helped me navigate the complex world of medical school applications. Thanks to KindlED, I got into my dream program!",
+        "The goal of this program isn't to help the already successful. It isn't to make money. KindlED’s goal is to fan the flames that every student already has inside of them and make sure more students every single day recognize their own potential and reach their goals",
       rating: 5,
     },
     {
-      name: "Marcus Johnson",
-      role: "Computer Science Major",
+      name: "Ayush Patel",
+      role: "Co-President",
       content:
-        "The guidance I received in coding and career planning was invaluable. My mentor became not just a teacher, but a friend.",
+        "Any person who has gone through any journey has the responsibility to look back and act as a guiding light for those on that very same journey. KindlED should act both the literal and figurative light that casts away any anxiety or doubt within underclassmen.",
       rating: 5,
     },
     {
-      name: "Emily Rodriguez",
-      role: "Business Student",
-      content:
-        "KindlED connected me with an entrepreneur who showed me the real world of business. It changed my entire perspective.",
+      name: "Vishwak Medempudi",
+      role: "Operations Director",
+      content: "COMING ",
       rating: 5,
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen">
@@ -120,6 +147,7 @@ export default function HomePage() {
             <p className="text-base md:text-lg text-gray-600">
               Making a difference, one mentorship at a time
             </p>
+            <p className=" text-base md=text-sm">For more detail hover</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
@@ -157,20 +185,22 @@ export default function HomePage() {
             {academicFields.map((field, index) => {
               const IconComponent = field.icon;
               return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                >
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl flex items-center justify-center">
-                      <IconComponent className="h-6 w-6 text-orange-500" />
+                <Link href={field.link}>
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-amber-100 rounded-xl flex items-center justify-center">
+                        <IconComponent className="h-6 w-6 text-orange-500" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-800">
+                        {field.name}
+                      </h3>
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {field.name}
-                    </h3>
+                    <div className="h-1 bg-gradient-to-r from-orange-200 to-amber-200 rounded-full"></div>
                   </div>
-                  <div className="h-1 bg-gradient-to-r from-orange-200 to-amber-200 rounded-full"></div>
-                </div>
+                </Link>
               );
             })}
           </div>

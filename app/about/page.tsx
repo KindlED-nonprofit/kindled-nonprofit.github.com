@@ -126,22 +126,22 @@ export default function AboutPage() {
                 <p>
                   KindlED was born from a simple observation: talented students
                   often lack access to the guidance and mentorship that can
-                  unlock their full potential. Our founders, a group of
-                  educators and professionals, recognized that while academic
-                  resources are abundant, personalized mentorship remains
-                  scarce.
+                  unlock their full potential. Our founders, a group of three
+                  passionate highschoolers, recognized that while academic
+                  resources are abundant, free and all inclusive personalized
+                  mentorship remains scarce.
                 </p>
                 <p>
-                  What started as a small pilot program connecting 20 students
-                  with mentors has grown into a thriving community of over 700
-                  participants across multiple academic disciplines. We've
-                  facilitated thousands of meaningful connections and helped
-                  students achieve their academic and career goals.
+                  What started as an idea — 'what could have been if we had only
+                  known better sooner?' — between a group of friends, grew into
+                  a program that connects peers one-on-one to explore how they
+                  can maximize their potential. With intentions rooted in growth
+                  and success, nothing can extinguish our flame.
                 </p>
                 <p>
-                  Today, KindlED continues to evolve, incorporating new
-                  technologies and methodologies to ensure every student finds
-                  the right mentor for their unique journey.
+                  Today, KindlED aims to evolve by incorporating new
+                  technologies and methodologies to ensure that every student
+                  finds the right mentor for their unique journey.
                 </p>
               </div>
             </div>
@@ -149,27 +149,27 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    202
+                    2025
                   </div>
                   <div className="text-sm text-gray-600">Founded</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    700+
+                    N/A
                   </div>
                   <div className="text-sm text-gray-600">
-                    Total Participants
+                    + Total Participants
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    50+
+                    N/A
                   </div>
                   <div className="text-sm text-gray-600">Universities</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    95%
+                    N/A
                   </div>
                   <div className="text-sm text-gray-600">Success Rate</div>
                 </div>
@@ -233,7 +233,8 @@ export default function AboutPage() {
             {academicFields.map((field, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow flex flex-col"
+                id={field.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow flex flex-col scroll-mt-24"
               >
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">
                   {field.title}
@@ -245,10 +246,10 @@ export default function AboutPage() {
                 {/* Spacer to push mentors to the bottom */}
                 <div className="flex-grow"></div>
 
-                <div className="flex items-center text-orange-500 font-medium mt-4">
+                {/* <div className="flex items-center text-orange-500 font-medium mt-4">
                   <Users className="h-4 w-4 mr-2" />
                   {field.mentors}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>

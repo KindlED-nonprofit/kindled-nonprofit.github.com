@@ -1,6 +1,15 @@
-import { CheckCircle, Users, Star, ArrowRight, MessageCircle, Calendar, Target, BookOpen } from "lucide-react"
-import Link from "next/link"
-import InteractiveFAQ from "@/components/interactive-faq"
+import {
+  CheckCircle,
+  Users,
+  Star,
+  ArrowRight,
+  MessageCircle,
+  Calendar,
+  Target,
+  BookOpen,
+} from "lucide-react";
+import Link from "next/link";
+import InteractiveFAQ from "@/components/interactive-faq";
 
 export default function ProgramsPage() {
   const benefits = {
@@ -20,58 +29,48 @@ export default function ProgramsPage() {
       "Professional development opportunities",
       "Peer networking and community support",
     ],
-  }
+  };
 
   const process = [
     {
       step: 1,
       title: "Application & Assessment",
-      description: "Complete our comprehensive application including academic background, goals, and preferences.",
+      description:
+        "Complete our comprehensive application including academic background, goals, and preferences.",
       icon: Target,
     },
     {
       step: 2,
       title: "Matching Process",
-      description: "Our team carefully matches mentors and mentees based on compatibility and shared interests.",
+      description:
+        "Our team carefully matches mentors and mentees based on compatibility and shared interests.",
       icon: Users,
     },
     {
       step: 3,
       title: "Initial Meeting",
-      description: "Participate in a structured introduction session to establish goals and expectations.",
+      description:
+        "Participate in a structured introduction session to establish goals and expectations.",
       icon: MessageCircle,
     },
     {
       step: 4,
       title: "Ongoing Mentorship",
-      description: "Engage in regular meetings, goal tracking, and continuous support throughout the program.",
+      description:
+        "Engage in regular meetings, goal tracking, and continuous support throughout the program.",
       icon: Calendar,
     },
-  ]
+  ];
 
   const testimonials = [
-    {
-      name: "Dr. Amanda Foster",
-      role: "Mentor - Cardiothoracic Surgeon",
-      content:
-        "Mentoring through KindlED has been incredibly rewarding. Seeing my mentees grow and achieve their goals reminds me why I chose medicine in the first place.",
-      rating: 5,
-    },
-    {
-      name: "James Liu",
-      role: "Mentee - Computer Science Major",
-      content:
-        "My mentor helped me land my dream internship at a tech company. The guidance on technical interviews and career planning was invaluable.",
-      rating: 5,
-    },
-    {
-      name: "Prof. Maria Santos",
-      role: "Mentor - Business School Faculty",
-      content:
-        "The structured approach KindlED provides makes mentoring effective and meaningful. I've seen remarkable transformations in my mentees.",
-      rating: 5,
-    },
-  ]
+    // {
+    //   name: "Dr. Amanda Foster",
+    //   role: "Mentor - Cardiothoracic Surgeon",
+    //   content:
+    //     "Mentoring through KindlED has been incredibly rewarding. Seeing my mentees grow and achieve their goals reminds me why I chose medicine in the first place.",
+    //   rating: 5,
+    // }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -110,8 +109,9 @@ export default function ProgramsPage() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-gray-700 max-w-4xl mx-auto font-medium">
-                Discover how our structured mentorship programs create meaningful connections and drive academic success
-                across diverse fields of study.
+                Discover how our structured mentorship programs create
+                meaningful connections and drive academic success across diverse
+                fields of study.
               </p>
             </div>
           </div>
@@ -122,12 +122,16 @@ export default function ProgramsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
-            <p className="text-base md:text-lg text-gray-600">Our proven 4-step process for successful mentorship</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              How It Works
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              Our proven 4-step process for successful mentorship
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {process.map((item, index) => {
-              const IconComponent = item.icon
+              const IconComponent = item.icon;
               return (
                 <div key={index} className="text-center">
                   <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -136,10 +140,14 @@ export default function ProgramsPage() {
                   <div className="bg-orange-500 text-white text-sm font-bold rounded-full w-8 h-8 flex items-center justify-center mx-auto mb-4">
                     {item.step}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{item.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
@@ -149,13 +157,19 @@ export default function ProgramsPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Program Benefits</h2>
-            <p className="text-base md:text-lg text-gray-600">What you can expect from our mentorship programs</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Program Benefits
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              What you can expect from our mentorship programs
+            </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* For Mentors */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">For Mentors</h3>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                For Mentors
+              </h3>
               <ul className="space-y-4">
                 {benefits.mentors.map((benefit, index) => (
                   <li key={index} className="flex items-start space-x-3">
@@ -177,7 +191,9 @@ export default function ProgramsPage() {
 
             {/* For Mentees */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">For Mentees</h3>
+              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                For Mentees
+              </h3>
               <ul className="space-y-4">
                 {benefits.mentees.map((benefit, index) => (
                   <li key={index} className="flex items-start space-x-3">
@@ -204,24 +220,28 @@ export default function ProgramsPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Success Metrics</h2>
-            <p className="text-base md:text-lg text-gray-600">Measurable outcomes from our mentorship programs</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Success Metrics
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              Measurable outcomes from our mentorship programs
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500 mb-2">95%</div>
+              <div className="text-4xl font-bold text-orange-500 mb-2">N/A</div>
               <div className="text-gray-600">Program Completion Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500 mb-2">88%</div>
+              <div className="text-4xl font-bold text-orange-500 mb-2">N/A</div>
               <div className="text-gray-600">College Acceptance Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500 mb-2">92%</div>
+              <div className="text-4xl font-bold text-orange-500 mb-2">N/A</div>
               <div className="text-gray-600">Satisfaction Score</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-orange-500 mb-2">78%</div>
+              <div className="text-4xl font-bold text-orange-500 mb-2">N/A</div>
               <div className="text-gray-600">Continue to Graduate School</div>
             </div>
           </div>
@@ -232,25 +252,47 @@ export default function ProgramsPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Our Community Says</h2>
-            <p className="text-base md:text-lg text-gray-600">Real experiences from mentors and mentees</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-25">
+              What Our Community Says
+            </h2>
+            {/* <p className="text-base md:text-lg text-gray-600">
+              Real experiences from mentors and mentees
+            </p> */}
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              Coming Soon
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              Be the first to leave a review!
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+              >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    <Star
+                      key={i}
+                      className="h-5 w-5 text-yellow-400 fill-current"
+                    />
                   ))}
                 </div>
-                <p className="text-gray-600 mb-4 leading-relaxed">"{testimonial.content}"</p>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  "{testimonial.content}"
+                </p>
                 <div>
-                  <div className="font-semibold text-gray-800">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                  <div className="font-semibold text-gray-800">
+                    {testimonial.name}
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    {testimonial.role}
+                  </div>
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -287,7 +329,8 @@ export default function ProgramsPage() {
           },
           {
             id: "program-support",
-            question: "What support does KindlED provide during the mentorship?",
+            question:
+              "What support does KindlED provide during the mentorship?",
             answer:
               "We provide regular check-ins, resources and guides, workshop opportunities, and a dedicated support team to ensure successful mentorship relationships.",
             category: "support",
@@ -321,10 +364,12 @@ export default function ProgramsPage() {
       {/* Call to Action */}
       <section className="py-16 bg-orange-500">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Your Journey?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Ready to Start Your Journey?
+          </h2>
           <p className="text-base md:text-lg text-orange-100 mb-8 max-w-2xl mx-auto">
-            Join hundreds of students and professionals who have transformed their academic and career paths through
-            mentorship.
+            Join hundreds of students and professionals who have transformed
+            their academic and career paths through mentorship.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -343,5 +388,5 @@ export default function ProgramsPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
