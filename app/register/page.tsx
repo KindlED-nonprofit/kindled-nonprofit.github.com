@@ -1,121 +1,133 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState, useRef } from "react";
 import {
   User,
   GraduationCap,
-  Award,
-  CheckCircle,
-  Mail,
-  Phone,
+  // Award,
+  // CheckCircle,
+  // Mail,
+  // Phone,
 } from "lucide-react";
-import { FloatingLabelInput } from "@/components/enhanced-form";
+// import { useForm } from "react-hook
 
-type FormData = {
-  // Shared fields
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  age: number;
-  gradeLevel: string;
-  gpa: number;
-  fieldOfInterest: string;
-  accomplishments: string;
-  extracurriculars: string;
-
-  // Mentor-specific fields
-  leadershipExperience?: string;
-  testScores?: string;
-  university?: string;
-  availability?: string;
-
-  // Mentee-specific fields
-  specificGoals?: string;
-  challengesAreas?: string;
-  preferredMentorType?: string;
-};
+type TabType = "mentee" | "mentor";
 
 export default function RegisterPage() {
-  const [activeTab, setActiveTab] = useState<"mentor" | "mentee">("mentee");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const formRef = useRef<HTMLDivElement | null>(null);
+  const [activeTab, setActiveTab] = useState<TabType>("mentee");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>();
+  useEffect(() => {
+    // Manually parse URL search params using window.location
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get("tab");
 
-  const academicFields = [
-    "Medicine & Healthcare",
-    "Computer Science/AI/Data Science",
-    "Business & Entrepreneurship",
-    "Humanities & Liberal Arts",
-    "Law & Policy",
-    "Engineering & STEM",
-    "Other",
-  ];
+    if (tab === "mentor" || tab === "mentee") {
+      setActiveTab(tab);
 
-  const gradeLevels = [
-    "High School (9th Grade)",
-    "High School (10th Grade)",
-    "High School (11th Grade)",
-    "High School (12th Grade)",
-    "Undergraduate (1st Year)",
-    "Undergraduate (2nd Year)",
-    "Undergraduate (3rd Year)",
-    "Undergraduate (4th Year)",
-    "Graduate Student",
-    "Recent Graduate",
-  ];
-
-  const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true);
-
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      console.log("Form submitted:", { ...data, type: activeTab });
-      setIsSubmitted(true);
-      reset();
-    } catch (error) {
-      console.error("Submission error:", error);
-    } finally {
-      setIsSubmitting(false);
+      setTimeout(() => {
+        if (formRef.current) {
+          window.scrollTo({
+            top: formRef.current.offsetTop - 100,
+            behavior: "smooth",
+          });
+        }
+      }, 10);
     }
-  };
+  }, []); // Run only once on mount
 
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-6">
-        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
-          <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="h-8 w-8 text-green-500" />
-          </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Application Submitted!
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Thank you for your interest in KindlED. We'll review your
-            application and get back to you within 3-5 business days.
-          </p>
-          <button
-            onClick={() => {
-              setIsSubmitted(false);
-              setActiveTab("mentee");
-            }}
-            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300"
-          >
-            Submit Another Application
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    // Update the URL query parameter without refreshing the page
+    window.history.pushState(null, "", `/register?tab=${tab}`);
+
+    setTimeout(() => {
+      if (formRef.current) {
+        window.scrollTo({
+          top: formRef.current.offsetTop - 100,
+          behavior: "smooth",
+        });
+      }
+    }, 10);
+  };
+  
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  //   reset,
+  // } = useForm<FormData>();
+
+  // const academicFields = [
+  //   "Medicine & Healthcare",
+  //   "Computer Science/AI/Data Science",
+  //   "Business & Entrepreneurship",
+  //   "Humanities & Liberal Arts",
+  //   "Law & Policy",
+  //   "Engineering & STEM",
+  //   "Other",
+  // ];
+
+  // const gradeLevels = [
+  //   "High School (9th Grade)",
+  //   "High School (10th Grade)",
+  //   "High School (11th Grade)",
+  //   "High School (12th Grade)",
+  //   "Undergraduate (1st Year)",
+  //   "Undergraduate (2nd Year)",
+  //   "Undergraduate (3rd Year)",
+  //   "Undergraduate (4th Year)",
+  //   "Graduate Student",
+  //   "Recent Graduate",
+  // ];
+
+  // const onSubmit = async (data: FormData) => {
+  //   setIsSubmitting(true);
+
+  //   try {
+  //     // Simulate API call
+  //     await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  //     console.log("Form submitted:", { ...data, type: activeTab });
+  //     setIsSubmitted(true);
+  //     reset();
+  //   } catch (error) {
+  //     console.error("Submission error:", error);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  // if (isSubmitted) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-6">
+  //       <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
+  //         <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+  //           <CheckCircle className="h-8 w-8 text-green-500" />
+  //         </div>
+  //         <h2 className="text-2xl font-bold text-gray-800 mb-4">
+  //           Application Submitted!
+  //         </h2>
+  //         <p className="text-gray-600 mb-6">
+  //           Thank you for your interest in KindlED. We'll review your
+  //           application and get back to you within 3-5 business days.
+  //         </p>
+  //         <button
+  //           onClick={() => {
+  //             setIsSubmitted(false);
+  //             setActiveTab("mentee");
+  //           }}
+  //           className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300"
+  //         >
+  //           Submit Another Application
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -164,10 +176,10 @@ export default function RegisterPage() {
 
       <div className="max-w-4xl mx-auto px-6 my-12">
         {/* Enhanced Tab Navigation */}
-        <div className="bg-white rounded-2xl shadow-xl p-2 mb-8 max-w-md mx-auto ">
+        <div className="bg-white rounded-2xl shadow-xl p-3 mb-8 max-w-lg mx-auto ">
           <div className="grid grid-cols-2 gap-2">
             <button
-              onClick={() => setActiveTab("mentee")}
+              onClick={() => handleTabChange("mentee")}
               className={`py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
                 activeTab === "mentee"
                   ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg transform scale-105"
@@ -175,10 +187,10 @@ export default function RegisterPage() {
               }`}
             >
               <User className="h-5 w-5 mr-2" />
-              Find a Mentor
+              Become A Mentee
             </button>
             <button
-              onClick={() => setActiveTab("mentor")}
+              onClick={() => handleTabChange("mentor")}
               className={`py-4 px-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
                 activeTab === "mentor"
                   ? "bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-lg transform scale-105"
@@ -191,13 +203,53 @@ export default function RegisterPage() {
           </div>
         </div>
 
+        <div ref={formRef} className="center my-10">
+          {activeTab === "mentee" && (
+            <section className="bg-white p-8 rounded-2xl max-w-4xl mx-auto my-12">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
+                  <User className="h-5 w-5 text-white" />
+                </div>
+                Mentee Application Form
+              </h2>
+              <div className="rounded-xl overflow-hidden">
+                <iframe
+                  className="w-full h-[1000px]"
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSftsjor8llJj8cPURwq3losYjNxb97pzVW6BCwYzf-tnTOaWg/viewform?embedded=true"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </section>
+          )}
+
+          {activeTab === "mentor" && (
+            <section className="bg-white p-8 rounded-2xl max-w-4xl mx-auto my-12">
+              <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+                <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
+                  <User className="h-5 w-5 text-white" />
+                </div>
+                Mentor Application Form
+              </h2>
+              <div className="rounded-xl overflow-hidden">
+                <iframe
+                  className="w-full h-[1000px]"
+                  src="https://docs.google.com/forms/d/e/1FAIpQLScbrYILLTkDYWep6rH_QIgOzuxzJyXdl3O2B0vrzjfky0kOVg/viewform?embedded=true"
+                >
+                  Loading…
+                </iframe>
+              </div>
+            </section>
+          )}
+        </div>
+
         {/* Enhanced Form */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
-          {/* Background decoration */}
+        {/* <div className="bg-white rounded-2xl shadow-2xl p-8 relative overflow-hidden">
+          Background decoration
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full -translate-y-16 translate-x-16 opacity-50"></div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            {/* Personal Information */}
+            Personal Information
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                 <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
@@ -261,7 +313,7 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            {/* Academic Information */}
+            Academic Information
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                 <div className="bg-gradient-to-r from-emerald-500 to-teal-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
@@ -311,7 +363,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            {/* Mentor-specific fields */}
+            Mentor-specific fields
             {activeTab === "mentor" && (
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -400,7 +452,7 @@ export default function RegisterPage() {
               </div>
             )}
 
-            {/* Mentee-specific fields */}
+            Mentee-specific fields
             {activeTab === "mentee" && (
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center">
@@ -479,7 +531,7 @@ export default function RegisterPage() {
               </div>
             )}
 
-            {/* Enhanced Submit Button */}
+            Enhanced Submit Button
             <div className="pt-8 border-t border-gray-200">
               <button
                 type="submit"
@@ -501,26 +553,7 @@ export default function RegisterPage() {
               </button>
             </div>
           </form>
-        </div>
-
-        <div className="center my-10">
-          <section className="bg-white p-8 rounded-2xl max-w-4xl mx-auto my-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center">
-              <div className="bg-gradient-to-r from-orange-500 to-amber-500 w-8 h-8 rounded-lg flex items-center justify-center mr-3">
-                <User className="h-5 w-5 text-white" />
-              </div>
-              Application Form
-            </h2>
-            <div className="rounded-xl overflow-hidden">
-              <iframe
-                className="w-full h-[1000px]"
-                src="https://docs.google.com/forms/d/e/1FAIpQLSftsjor8llJj8cPURwq3losYjNxb97pzVW6BCwYzf-tnTOaWg/viewform?embedded=true"
-              >
-                Loading…
-              </iframe>
-            </div>
-          </section>
-        </div>
+        </div> */}
       </div>
     </div>
   );

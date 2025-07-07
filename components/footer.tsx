@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image";
-import { Mail, MapPin } from "lucide-react"
+import { Mail, MapPin, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -81,6 +81,16 @@ export default function Footer() {
                 <MapPin className="h-4 w-4 text-orange-500" />
                 <span className="text-gray-400">Schaumburg, IL</span>
               </div>
+              <div className="flex items-center space-x-2">
+                <Link
+                  className="flex items-center space-x-2"
+                  href={"https://www.instagram.com/kindled.social/"}
+                  target="_blank"
+                >
+                  <Instagram className="h-4 w-4 text-orange-500" />
+                  <span className="text-gray-400">Instagram</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -88,6 +98,9 @@ export default function Footer() {
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
             &copy; {new Date().getFullYear()} KindlED. All rights reserved.
+          </p>
+          <p className="mt-1 text-xs text-gray-500">
+            Fiscally sponsored by HCB
           </p>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+
 import { Mail, Clock, Send, CheckCircle, User } from "lucide-react"
 import { FloatingLabelInput } from "@/components/enhanced-form"
 
@@ -17,31 +18,53 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   const {
-    register,
-    handleSubmit,
+  register,
+  handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm<ContactFormData>()
+  reset,
+} = useForm<ContactFormData>({
+  mode: "onTouched", // or "onChange" for instant validation
+})
 
   const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "a0b0e6b4-a12e-457e-afbd-dde8da0ab285", // ← your key
+          name: data.name,
+          email: data.email,
+          subject: "Contact Us Form: " + data.subject,
+          message: data.message,
+        }),
+      });
 
-      console.log("Contact form submitted:", data)
-      setIsSubmitted(true)
-      reset()
+      const result = await response.json();
 
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000)
+      if (result.success) {
+        console.log("Form sent:", result);
+        setIsSubmitted(true);
+        reset();
+
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        console.error("Web3Forms Error:", result);
+        alert("Something went wrong. Please try again.");
+      }
     } catch (error) {
-      console.error("Submission error:", error)
+      console.error("Submission error:", error);
+      alert("An error occurred. Please try again.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
+
 
   const contactInfo = [
     {
@@ -119,8 +142,8 @@ export default function ContactPage() {
                 </span>
               </h1>
               <p className="text-lg md:text-xl leading-relaxed text-gray-700 max-w-4xl mx-auto font-medium">
-                Have questions about our programs? Need support with your mentorship? We're here to help and would love
-                to hear from you.
+                Have questions about our programs? Need support with your
+                mentorship? We're here to help and would love to hear from you.
               </p>
             </div>
           </div>
@@ -131,25 +154,30 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              Contact Information
+            </h2>
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
-                const IconComponent = info.icon
+                const IconComponent = info.icon;
                 return (
                   <div key={index} className="flex items-start space-x-4">
                     <div className="bg-orange-100 w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                       <IconComponent className="h-6 w-6 text-orange-500" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">{info.title}</h3>
+                      <h3 className="font-semibold text-gray-800 mb-1">
+                        {info.title}
+                      </h3>
                       <p className="text-gray-600 mb-1">{info.content}</p>
-                      <p className="text-sm text-gray-500">{info.description}</p>
+                      <p className="text-sm text-gray-500">
+                        {info.description}
+                      </p>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
-            
           </div>
 
           {/* Enhanced Contact Form */}
@@ -158,13 +186,16 @@ export default function ContactPage() {
               {/* Background decoration */}
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full -translate-y-20 translate-x-20 opacity-30"></div>
 
-              <h2 className="text-3xl font-bold text-gray-800 mb-8 relative">Send us a Message</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-8 relative">
+                Send us a Message
+              </h2>
 
               {isSubmitted && (
                 <div className="bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-emerald-200 rounded-xl p-4 mb-8 flex items-center animate-fadeInUp">
                   <CheckCircle className="h-6 w-6 text-emerald-500 mr-3 flex-shrink-0" />
                   <p className="text-emerald-700 font-medium">
-                    Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    Thank you! Your message has been sent successfully. We'll
+                    get back to you soon.
                   </p>
                 </div>
               )}
@@ -179,6 +210,7 @@ export default function ContactPage() {
                     register={register}
                     error={errors.name?.message}
                   />
+
                   <FloatingLabelInput
                     label="Email Address"
                     name="email"
@@ -244,13 +276,19 @@ export default function ContactPage() {
         {/* FAQ Section */}
         <div className="mt-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
-            <p className="text-base md:text-lg text-gray-600">Quick answers to common questions</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-base md:text-lg text-gray-600">
+              Quick answers to common questions
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {faqs.map((faq, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">{faq.question}</h3>
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                  {faq.question}
+                </h3>
                 <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
               </div>
             ))}
@@ -258,5 +296,5 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

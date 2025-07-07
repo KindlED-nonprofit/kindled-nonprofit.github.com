@@ -61,16 +61,16 @@ export default function Navigation() {
             ))}
             <div className="flex space-x-4">
               <Link
-                href="/register?type=mentor"
+                href="/register?tab=mentee"
                 className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300"
               >
-                Become a Mentor
+                Become a Mentee
               </Link>
               <Link
-                href="/register?type=mentee"
+                href="/register?tab=mentor"
                 className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-2 px-4 rounded-full transition duration-300"
               >
-                Find a Mentor
+                Become a Mentor
               </Link>
             </div>
           </div>

@@ -155,15 +155,15 @@ export default function AboutPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    N/A
+                    30+
                   </div>
                   <div className="text-sm text-gray-600">
-                    + Total Participants
+                    Total Participants
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-orange-500 mb-2">
-                    N/A
+                    10+
                   </div>
                   <div className="text-sm text-gray-600">Universities</div>
                 </div>

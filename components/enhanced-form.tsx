@@ -2,22 +2,24 @@
 
 import type React from "react"
 import { useState } from "react"
+import { UseFormRegister, FieldValues, Path} from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react"
 
-interface FloatingLabelInputProps {
+interface FloatingLabelInputProps<T extends FieldValues> {
   label: string;
   type?: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   required?: boolean;
   error?: string;
-  register: any;
-  name: string;
+  register: UseFormRegister<T>; // ✅ generic
+  name: Path<T>;
+  // ✅ ties input name to your form type
   placeholder?: string;
   rows?: number;
   options?: string[];
 }
 
-function FloatingLabelInput({
+function FloatingLabelInput<T extends FieldValues>({
   label,
   type = "text",
   icon: Icon,
@@ -28,8 +30,8 @@ function FloatingLabelInput({
   placeholder,
   rows,
   options,
-}: FloatingLabelInputProps) {
-  const [showPassword, setShowPassword] = useState(false)
+}: FloatingLabelInputProps<T>) {
+  const [showPassword, setShowPassword] = useState(false);
 
   if (type === "select" && options) {
     return (
@@ -44,8 +46,13 @@ function FloatingLabelInput({
             </div>
           )}
           <select
-            {...register(name)}
-            className={`w-full ${Icon ? "pl-11" : "pl-4"} pr-4 py-3 border-2 rounded-xl transition-all duration-200 bg-white appearance-none ${
+            {...register(
+              name,
+              required ? { required: `${label} is required` } : {}
+            )}
+            className={`w-full ${
+              Icon ? "pl-11" : "pl-4"
+            } pr-4 py-3 border-2 rounded-xl transition-all duration-200 bg-white appearance-none ${
               error
                 ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-100"
                 : "border-gray-200 focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
@@ -66,7 +73,7 @@ function FloatingLabelInput({
           </p>
         )}
       </div>
-    )
+    );
   }
 
   if (type === "textarea") {
@@ -82,9 +89,14 @@ function FloatingLabelInput({
             </div>
           )}
           <textarea
-            {...register(name)}
+            {...register(
+              name,
+              required ? { required: `${label} is required` } : {}
+            )}
             rows={rows || 4}
-            className={`w-full ${Icon ? "pl-11" : "pl-4"} pr-4 py-3 border-2 rounded-xl transition-all duration-200 bg-white resize-none ${
+            className={`w-full ${
+              Icon ? "pl-11" : "pl-4"
+            } pr-4 py-3 border-2 rounded-xl transition-all duration-200 bg-white resize-none ${
               error
                 ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-100"
                 : "border-gray-200 focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
@@ -99,7 +111,7 @@ function FloatingLabelInput({
           </p>
         )}
       </div>
-    )
+    );
   }
 
   return (
@@ -114,9 +126,14 @@ function FloatingLabelInput({
           </div>
         )}
         <input
-          {...register(name)}
+          {...register(
+            name,
+            required ? { required: `${label} is required` } : {}
+          )}
           type={type === "password" && showPassword ? "text" : type}
-          className={`w-full ${Icon ? "pl-11" : "pl-4"} ${type === "password" ? "pr-11" : "pr-4"} py-3 border-2 rounded-xl transition-all duration-200 bg-white ${
+          className={`w-full ${Icon ? "pl-11" : "pl-4"} ${
+            type === "password" ? "pr-11" : "pr-4"
+          } py-3 border-2 rounded-xl transition-all duration-200 bg-white ${
             error
               ? "border-red-300 focus:border-red-500 focus:ring-4 focus:ring-red-100"
               : "border-gray-200 focus:border-orange-400 focus:ring-4 focus:ring-orange-100"
@@ -129,7 +146,11 @@ function FloatingLabelInput({
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 z-10"
           >
-            {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+            {showPassword ? (
+              <EyeOff className="h-5 w-5" />
+            ) : (
+              <Eye className="h-5 w-5" />
+            )}
           </button>
         )}
       </div>
@@ -140,7 +161,7 @@ function FloatingLabelInput({
         </p>
       )}
     </div>
-  )
+  );
 }
 
 export { FloatingLabelInput }

@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 
 export default function HomePage() {
-  type ModalType = "students" | "mentors" | "success" | "universities";
+  type ModalType = "students" | "mentors" | "success" | "universities" | null;
 
   const stats: {
     id: ModalType;
@@ -24,14 +24,89 @@ export default function HomePage() {
     label: string;
     icon: LucideIcon;
   }[] = [
-    { id: "students", number: "N/A", label: "Students Mentored", icon: Users },
-    { id: "mentors", number: "N/A", label: "Active Mentors", icon: BookOpen },
-    { id: "success", number: "N/A", label: "Success Rate", icon: Award },
+    {
+      id: null,
+      number: "N/A",
+      label: "Students Mentored",
+      icon: Users,
+    },
+    { id: "mentors", number: "30+", label: "Active Mentors", icon: BookOpen },
+    { id: null, number: "N/A", label: "Success Rate", icon: Award },
     {
       id: "universities",
-      number: "N/A",
+      number: "10+",
       label: "Universities Represented",
       icon: TrendingUp,
+    },
+  ];
+
+  type University = {
+    name: string;
+    location: string;
+    mentors: number;
+    logo: string;
+  };
+
+  const universities: University[] = [
+    {
+      name: "Yale University",
+      location: "New Haven, CT",
+      mentors: 2,
+      logo: "/logos/yale.png",
+    },
+    {
+      name: "Johns Hopkins University",
+      location: "Baltimore, MD",
+      mentors: 1,
+      logo: "/logos/jhu.png",
+    },
+    {
+      name: "University of Chicago",
+      location: "Chicago, IL",
+      mentors: 1,
+      logo: "/logos/uchicago.png",
+    },
+    {
+      name: "University of Michigan",
+      location: "Ann Arbor, MI",
+      mentors: 1,
+      logo: "/logos/umich.png",
+    },
+    {
+      name: "Washington University in St. Louis",
+      location: "St. Louis, MO",
+      mentors: 1,
+      logo: "/logos/washu.png",
+    },
+    {
+      name: "Emory University",
+      location: "Atlanta, GA",
+      mentors: 1,
+      logo: "/logos/emory.png",
+    },
+    {
+      name: "University of Illinois Urbana-Champaign (UIUC)",
+      location: "Urbana-Champaign, IL",
+      mentors: 2,
+      logo: "/logos/uiuc.png",
+    },
+    {
+      name: "University of Wisconsin-Madison",
+      location: "Madison, WI",
+      mentors: 1,
+      logo: "/logos/uwmadison.png",
+    },
+    {
+      name: "Purdue University",
+      location: "West Lafayette, IN",
+      mentors: 1,
+      logo: "/logos/purdue.png",
+    },
+    {
+      name: "University of Illinois at Chicago (UIC)",
+      location: "Chicago, IL",
+      mentors: 1,
+      logo: "/logos/uic.png",
     },
   ];
 
@@ -78,7 +153,8 @@ export default function HomePage() {
     {
       name: "Vishwak Medempudi",
       role: "Operations Director",
-      content: "COMING ",
+      content:
+        "I messed up a lot in high school. That’s why I jumped at the idea of KindlED – to help other students not make the same mistakes I did. I want this to be a place where mentors can look out for underclassmen and keep them from slipping up, and help them stay on the right path.",
       rating: 5,
     },
   ];
@@ -135,19 +211,18 @@ export default function HomePage() {
               style={{ animationDelay: "0.3s" }}
             >
               <Link
-                href="/register?type=mentor"
+                href="/register?tab=mentee"
                 className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-1"
               >
                 <span className="mr-2">🔥</span>
-                Become a Mentor
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Become a Mentee
               </Link>
               <Link
-                href="/register?type=mentee"
+                href="/register?tab=mentor"
                 className="group bg-white/90 backdrop-blur-sm border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 hover:-translate-y-1"
               >
                 <Heart className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-                Find a Mentor
+                Become a Mentor
               </Link>
             </div>
           </div>
@@ -165,8 +240,8 @@ export default function HomePage() {
             <p className="text-base md:text-lg text-gray-600">
               Making a difference, one mentorship at a time
             </p>
-            <p className="text-base md:text-sm">
-              For more detail hover or click
+            <p className="text-base md:text-sm text-gray-600">
+              For more detail click
             </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -215,7 +290,10 @@ export default function HomePage() {
             {activeModal === "students" && (
               <div>
                 <h3 className="text-2xl font-bold mb-4">Students Mentored</h3>
-                <p>We've mentored students from schools across the country:</p>
+                <p>
+                  Be come a Mentee
+                  {/* We've mentored students from schools across the country: */}
+                </p>
                 {/* You can show school logos, names, or a map here */}
               </div>
             )}
@@ -224,9 +302,8 @@ export default function HomePage() {
               <div>
                 <h3 className="text-2xl font-bold mb-4">Active Mentors</h3>
                 <p>
-                  We currently have <strong>[Actual Number]</strong> active and
-                  highly qualified mentors ready to help mentees from all
-                  backgrounds.
+                  We currently have <strong>30+</strong> active and highly
+                  qualified mentors ready to help mentees from all backgrounds.
                 </p>
               </div>
             )}
@@ -234,9 +311,10 @@ export default function HomePage() {
             {activeModal === "success" && (
               <div>
                 <h3 className="text-2xl font-bold mb-4">Success Rate</h3>
-                <p className="mb-4">Based on mentor and mentee feedback:</p>
+                {/* <p className="mb-4">Based on mentor and mentee feedback:</p> */}
                 <div className="space-y-2">
-                  {[5, 4, 3, 2, 1].map((star) => (
+                  Be the first to leave a review!
+                  {/* {[5, 4, 3, 2, 1].map((star) => (
                     <div key={star} className="flex items-center space-x-2">
                       <span>{star}★</span>
                       <div className="bg-gray-200 w-full h-3 rounded">
@@ -246,11 +324,11 @@ export default function HomePage() {
                         ></div>
                       </div>
                     </div>
-                  ))}
+                  ))} */}
                 </div>
-                <p className="text-sm text-gray-600 mt-4 italic">
+                {/* <p className="text-sm text-gray-600 mt-4 italic">
                   * Every review with 3+ stars is counted as successful.
-                </p>
+                </p> */}
               </div>
             )}
 
@@ -259,31 +337,29 @@ export default function HomePage() {
                 <h3 className="text-2xl font-bold mb-4">
                   Universities Represented
                 </h3>
-                <ul className="space-y-3">
-                  {/* Replace with your actual university data */}
-                  <li className="flex items-center space-x-4">
-                    <img
-                      src="/logos/harvard.png"
-                      alt="Harvard"
-                      className="w-10 h-10"
-                    />
-                    <div>
-                      <p className="font-medium">Harvard University</p>
-                      <p className="text-sm text-gray-600">
-                        Cambridge, MA – 4 mentors
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-center space-x-4">
-                    <img src="/logos/mit.png" alt="MIT" className="w-10 h-10" />
-                    <div>
-                      <p className="font-medium">MIT</p>
-                      <p className="text-sm text-gray-600">
-                        Cambridge, MA – 3 mentors
-                      </p>
-                    </div>
-                  </li>
-                </ul>
+                <div className="max-h-48 sm:max-h-64 md:max-h-80 overflow-y-auto border rounded p-4">
+                  <ul className="space-y-3">
+                    {universities.map((uni) => (
+                      <li
+                        key={uni.name}
+                        className="flex items-center space-x-4"
+                      >
+                        {/* <img
+                          src={uni.logo}
+                          alt={uni.name}
+                          className="w-10 h-10 flex-shrink-0"
+                        /> */}
+                        <div>
+                          <p className="font-medium">{uni.name}</p>
+                          <p className="text-sm text-gray-600">
+                            {uni.location} – {uni.mentors} mentor
+                            {uni.mentors !== 1 && "s"}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             )}
           </div>
