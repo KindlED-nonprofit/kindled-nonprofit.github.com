@@ -168,30 +168,6 @@ export default function ProgramsPage() {
             {/* For Mentors */}
             <div className="bg-white rounded-xl shadow-lg p-8">
               <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
-                For Mentors
-              </h3>
-              <ul className="space-y-4">
-                {benefits.mentors.map((benefit, index) => (
-                  <li key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="h-6 w-6 text-orange-500 flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-600">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 text-center">
-                <Link
-                  href="/register?type=mentor"
-                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
-                >
-                  Become a Mentor
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-
-            {/* For Mentees */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
                 For Mentees
               </h3>
               <ul className="space-y-4">
@@ -204,10 +180,34 @@ export default function ProgramsPage() {
               </ul>
               <div className="mt-8 text-center">
                 <Link
-                  href="/register?type=mentee"
+                  href="/register?tab=mentee"
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
+                >
+                  Become a Mentee
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* For Mentees */}
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <h3 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                For Mentors
+              </h3>
+              <ul className="space-y-4">
+                {benefits.mentors.map((benefit, index) => (
+                  <li key={index} className="flex items-start space-x-3">
+                    <CheckCircle className="h-6 w-6 text-orange-500 flex-shrink-0 mt-0.5" />
+                    <span className="text-gray-600">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 text-center">
+                <Link
+                  href="/register?tab=mentor"
                   className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold py-3 px-6 rounded-full transition duration-300 inline-flex items-center"
                 >
-                  Find a Mentor
+                  Become a Mentor
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </div>
@@ -332,7 +332,7 @@ export default function ProgramsPage() {
             question:
               "What support does KindlED provide during the mentorship?",
             answer:
-              "We provide regular check-ins, resources and guides, workshop opportunities, and a dedicated support team to ensure successful mentorship relationships.",
+              "We provide regular check-ins, resources and guides, and a dedicated support team to ensure successful mentorship relationships.",
             category: "support",
           },
           {

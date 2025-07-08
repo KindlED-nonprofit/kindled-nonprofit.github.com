@@ -302,9 +302,8 @@ export default function AboutPage() {
                 Ongoing Growth
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                We provide resources, workshops, and community events to help
-                both mentors and mentees continue growing throughout their
-                journey.
+                We provide resources and community support to help both mentors
+                and mentees continue growing throughout their journey.
               </p>
             </div>
           </div>
