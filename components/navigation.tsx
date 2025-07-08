@@ -34,8 +34,8 @@ export default function Navigation() {
             <Image
               src="/logo.png"
               alt="Logo"
-              width={10}
-              height={10}
+              width={1000}
+              height={1000}
               className="w-10 h-auto"
             />
             <span className="text-2xl font-bold text-gray-800">KindlED</span>
