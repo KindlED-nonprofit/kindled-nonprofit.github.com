@@ -32,7 +32,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/logo.png"
+              src="/assets/logo.png"
               alt="Logo"
               width={1000}
               height={1000}

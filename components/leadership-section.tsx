@@ -20,7 +20,7 @@ export default function LeadershipSection() {
       bio: "Ibraim leads our mission and heads the organization with his 2 co-founders. A passionate High school senior who's always wanted to see his peers succeed in life. He devotes his time to KindlED to maximize the success of it, its mentors, and its mentees as one whole family.",
       education:
         "Senior @ Schaumburg High School - Aspiring Pharmaceutical Scientist",
-      image: "/ibraim.png?height=128&width=128",
+      image: "/assets/leaderImg/ibraim.png?height=128&width=128",
       linkedin: "https://www.linkedin.com/in/ibraim-kanza-684348305/",
       email: "ibraimkanza@gmail.com",
     },
@@ -30,7 +30,7 @@ export default function LeadershipSection() {
       bio: "Ayush leads besides Ibraim as Co-President. He is a passionate and driven scholar that has made great strides in pursuing his cultural heritage and fostering others’ cultural connection. Ayush is constantly trying to find a new project that inspires him and others as KindlED does.",
       education:
         "Senior @ Schaumburg High School - Aspiring Aerospace Engineer and Business Administrator",
-      image: "/ayush.png?height=128&width=128",
+      image: "/assets/leaderImg/ayush.png?height=128&width=128",
       linkedin: "https://www.linkedin.com/in/ayush-patel-77721335a/",
       email: "Ayush08132008@gmail.com",
     },
@@ -40,7 +40,7 @@ export default function LeadershipSection() {
       bio: "Vishwak is a co-founder of KindlED. He is driven by a passion for educational equity and service. As a student interested in finance, Vishwak brings both insight and energy to the mission. He believes that the right guidance can change lives, and is committed to making it accessible to all.",
       education:
         "Senior @ Schaumburg High School - Aspiring Risk Management Professional and Wealth Advisor",
-      image: "/vishwak.png?height=128&width=128",
+      image: "/assets/leaderImg/vishwak.png?height=128&width=128",
       //TODO: Add Linkedin
       linkedin: "",
       email: "vishwak.medempudi@gmail.com",
@@ -51,7 +51,7 @@ export default function LeadershipSection() {
       bio: "Paritosh is the developer behind KindlED’s website. A passionate student with a love for coding, design, and SEO, he built the platform to reflect the mission and make it accessible to all. From optimizing performance to enhancing user experience, Paritosh brings a creative yet logical approach to everything he builds. He’s always seeking new ways to use technology to solve real-world problems.np",
       education:
         "Senior @ Schaumburg High School - Aspiring Computer Scientist and AI Engineer",
-      image: "/paritosh.png?height=128&width=128",
+      image: "/assets/leaderImg/paritosh.png?height=128&width=128",
       linkedin: "https://www.linkedin.com/in/paritoshvaghasiya/",
       email: "paritoshnvaghasiya@gmail.com",
       website: "https://v-paritosh.github.io/",
